@@ -114,62 +114,33 @@ class WhatsappTransport extends AbstractSmsApi
      */
     protected function send($number, $content)
     {
+	    // Manually imput your apikey
+	    // Also input your apikey in you mautic Whatsapp plugin config
 	    
-        $apikey="apikey";
-        
+        $apikey="Your apikey";
         
         $curl = curl_init();
         
         curl_setopt_array($curl, array(
             CURLOPT_URL => 'https://starsender.online/api/sendText?message='.rawurlencode($content).'&tujuan='.rawurlencode($number.'@s.whatsapp.net'),
             CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => '',
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 0,
-  CURLOPT_FOLLOWLOCATION => true,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => 'POST',
-  CURLOPT_HTTPHEADER => array(
-    'apikey: '.$apikey
-  ),
-));
+		CURLOPT_ENCODING => '',
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 0,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => 'POST',
+		CURLOPT_HTTPHEADER => array(
+			'apikey: '.$apikey
+		),
+	));
 
 $response = curl_exec($curl);
 
 curl_close($curl);
 echo $response;
     }
-
-/**
-$url='http://116.203.191.58/api/send_message';
-$data = array(
-  "phone_no"  => $number,
-  "phone_no"  => '+'.$number,
-  "key"       => $this->api_key,
-  "message"   => $content,
-  "skip_link" => True // This optional for skip snapshot of link in message
-);
-$data_string = json_encode($data);
-
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_VERBOSE, 0);
-curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0);
-curl_setopt($ch, CURLOPT_TIMEOUT, 360);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-  'Content-Type: application/json',
-  'Content-Length: ' . strlen($data_string))
-);
-echo $res=curl_exec($ch);
-curl_close($ch);
-
-        $this->logger->addInfo("Whatsapp MSG API request intiated. ", ['url' => $url]);
-    }
-*/
+	
     /**
      * @param string $number
      *
@@ -180,6 +151,7 @@ curl_close($ch);
     protected function sanitizeNumber($number)
     {
         $util = PhoneNumberUtil::getInstance();
+	    // Changed IN to ID
         $parsed = $util->parse($number, 'ID');
 
         return $util->format($parsed, PhoneNumberFormat::E164);
