@@ -9,7 +9,10 @@ https://joeykeller.com/weekend-project-a-mautic-whatsapp-plugin
 ## Installation by console
 1. Download the plugin, unzip in your plugins folder
 2. Rename the folder to MauticWhatsappBundle
-3. `php bin/console mautic:plugins:reload`
+3. `nano plugins/MauticWhatsappBundle/Transport/WhatsappTransport.php
+4. paste your starsender apikey in  $apikey="Your apikey" (line 120)
+5. Clear cache
+6. `php bin/console mautic:plugins:reload`
 
 ## Usage
 1. Go to your **Plugins** in Mautic
@@ -19,3 +22,6 @@ https://joeykeller.com/weekend-project-a-mautic-whatsapp-plugin
 
 Check my blog for updates and Mautic guides:
 Joeykeller.com
+
+## Send with starsender wa api
+1. Go to your plugin and input the starsender apikey
