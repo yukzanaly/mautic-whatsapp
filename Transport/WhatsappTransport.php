@@ -116,13 +116,13 @@ class WhatsappTransport extends AbstractSmsApi
     {
 
 
-$url='http://116.203.191.58/api/send_message';
+$url='https://app.whacenter.com/api/send';
 $data = array(
-  "phone_no"  => $number,
-  "phone_no"  => '+'.$number,
-  "key"       => $this->api_key,
+  "device_id" => $this->api_key,
+  "number"    => $number,
+  "number"    => '+'.$number,
   "message"   => $content,
-  "skip_link" => True // This optional for skip snapshot of link in message
+"skip_link" => True // This optional for skip snapshot of link in message
 );
 $data_string = json_encode($data);
 
